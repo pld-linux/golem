@@ -4,7 +4,7 @@
 #
 Name:		golem
 Summary:	X11 window manager
-Summary(pl):	Menad¿er okien dla X11
+Summary(pl):	Zarz±dca okien dla X11
 Version:	0.0.5
 Release:	1
 License:	GPL
@@ -24,7 +24,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Golem is a litle X11 window manager.
 
 %description -l pl
-Golem jest ma³ym i prostym menad¿erem okien dla X11.
+Golem jest ma³ym i prostym zarz±dc± okien dla X11.
 
 %prep
 %setup -q
