@@ -31,7 +31,7 @@ Golem jest ma³ym i prostym menad¿erem okien dla X11.
 
 %build
 aclocal
-autoconf
+%{__autoconf}
 cp -f /usr/share/automake/config.* .
 %configure \
 	--enable-sound \
