@@ -10,6 +10,7 @@ Release:	2
 License:	GPL
 Group:		X11/Window Managers
 Source0:	http://telia.dl.sourceforge.net/sourceforge/golem/%{name}-%{version}.tar.gz
+# Source0-md5:	09f503f5c6e621e5029e845682a8c941
 Patch0:		%{name}-etc_dir.patch
 URL:		http://golem.sf.net/
 BuildRequires:	XFree86-devel
