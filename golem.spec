@@ -30,7 +30,7 @@ Golem jest ma³ym i prostym menad¿erem okien dla X11.
 %setup -q
 
 %build
-aclocal
+%{__aclocal}
 %{__autoconf}
 cp -f /usr/share/automake/config.* .
 %configure \
