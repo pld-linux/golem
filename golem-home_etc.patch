@@ -1,0 +1,103 @@
+diff -Nru golem-0.0.5/src/main.c golem-0.0.5.new/src/main.c
+--- golem-0.0.5/src/main.c	Tue May 21 23:06:25 2002
++++ golem-0.0.5.new/src/main.c	Sat Mar 29 15:01:07 2003
+@@ -41,6 +41,7 @@
+ 
+ char		*binary_name;		/* the bin golem was launched as (for restarts, etc) */
+ char		*homedir_path;		/* path to the user's home directory */
++char		*config_dir;
+ 
+ volatile int	restart_flag = 0;	/* flag when set means golem needs to restart */
+ volatile char	*restart_bin = NULL;	/* what to restart when golem_restart = 1, or null */
+@@ -98,6 +99,7 @@
+ #endif
+ 	binary_name = argv[0];
+ 	homedir_path = getenv("HOME");
++	config_dir = getenv("CONFIG_DIR");
+ 
+ 	signal(SIGCHLD, handle_sigchld);
+ 	signal(SIGUSR1, handle_sigusr1);
+diff -Nru golem-0.0.5/src/plugin.c golem-0.0.5.new/src/plugin.c
+--- golem-0.0.5/src/plugin.c	Fri Dec 21 04:51:17 2001
++++ golem-0.0.5.new/src/plugin.c	Sat Mar 29 15:27:54 2003
+@@ -94,30 +94,44 @@
+ 		 * home directory
+ 		 */
+ 		if ((c = strchr(plugindir, '~')) != NULL) {
++			char *config_dir = getenv("CONFIG_DIR");
+ 			char *newdir;
+ 			int olen, hplen;
+ 
+-			olen = strlen(plugindir);
+-			newdir = malloc(olen + 2);
+-			if (!newdir)
+-				continue;
+-
+-			*c = '\0';
+-			strcpy(newdir, plugindir);
+-			strcat(&newdir[c - plugindir], "%s");
+-			strcat(&newdir[c - plugindir + 2], &c[1]);
+-
+-			hplen = strlen(homedir_path);
+-			usedplugdir = malloc(hplen + olen + 1);
+-			if (!usedplugdir) {
++			if (config_dir) {
++				olen = strlen(plugindir);
++
++				hplen = strlen(config_dir);
++				usedplugdir = malloc(hplen + olen + 1);
++				if (!usedplugdir) {
++					continue;
++				}
++				snprintf(usedplugdir, hplen + olen + 1,
++					"%s/%s", config_dir, plugindir + 3);
++				plugindir = usedplugdir;
++			} else {
++				olen = strlen(plugindir);
++				newdir = malloc(olen + 2);
++				if (!newdir)
++					continue;
++
++				*c = '\0';
++				strcpy(newdir, plugindir);
++				strcat(&newdir[c - plugindir], "%s");
++				strcat(&newdir[c - plugindir + 2], &c[1]);
++
++				hplen = strlen(homedir_path);
++				usedplugdir = malloc(hplen + olen + 1);
++				if (!usedplugdir) {
++					free(newdir);
++					continue;
++				}
++				snprintf(usedplugdir, hplen + olen + 1,
++					newdir, homedir_path);
+ 				free(newdir);
+-				continue;
+-			}
+-			snprintf(usedplugdir, hplen + olen + 1,
+-				newdir, homedir_path);
+-			free(newdir);
+ 
+-			plugindir = usedplugdir;
++				plugindir = usedplugdir;
++			}
+ 		}
+ 
+ 		/* build the full path */
+diff -Nru golem-0.0.5/src/rcfile.y golem-0.0.5.new/src/rcfile.y
+--- golem-0.0.5/src/rcfile.y	Tue May 21 23:06:25 2002
++++ golem-0.0.5.new/src/rcfile.y	Sat Mar 29 15:03:27 2003
+@@ -525,8 +525,11 @@
+ 	if (!subparams_stack)
+ 		goto free2;
+ 
+-	/* build file location strings */	
+-	snprintf(filedir, MAXPATHLEN, "%s/.golem/", homedir_path);
++	/* build file location strings */
++	if (config_dir)
++		snprintf(filedir, MAXPATHLEN, "%s/golem/", config_dir);
++	else
++		snprintf(filedir, MAXPATHLEN, "%s/.golem/", homedir_path);
+ 	snprintf(filename, MAXPATHLEN, "%s", "golemrc");
+ 	snprintf(rcfn, sizeof(rcfn), "%s%s", filedir, filename);
+ 
