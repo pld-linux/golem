@@ -4,7 +4,7 @@
 #
 Name:		golem
 Summary:	X11 window manager
-Summary(pl):	Window menad¿er dla X11
+Summary(pl):	Menad¿er okien dla X11
 Version:	0.0.4
 Release:	1
 License:	GPL
