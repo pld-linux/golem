@@ -18,7 +18,6 @@ BuildRequires:	esound-devel
 BuildRequires:	flex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6/
 
 %description
 Golem is a litle X11 window manager.
