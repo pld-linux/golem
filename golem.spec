@@ -11,6 +11,7 @@ License:	GPL
 Group:		X11/Window Managers
 Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	09f503f5c6e621e5029e845682a8c941
+Source1:        %{name}-xsession.desktop
 Patch0:		%{name}-etc_dir.patch
 URL:		http://golem.sf.net/
 BuildRequires:	XFree86-devel
@@ -43,7 +44,9 @@ cp -f /usr/share/automake/config.* .
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/golem/plugins} \
-	$RPM_BUILD_ROOT{%{_mandir}/man1,%{_datadir}/golem}
+	$RPM_BUILD_ROOT{%{_mandir}/man1,%{_datadir}/{golem,xsessions}}
+
+install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 
 install build-bin/* $RPM_BUILD_ROOT%{_bindir}
 install build-plugin/* $RPM_BUILD_ROOT%{_libdir}/golem/plugins
@@ -60,5 +63,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc PLUGINS README THEMES TODO
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/*
-%{_mandir}/man1/golem.1*
 %{_datadir}/golem
+%{_datadir}/xsessions/%{name}.desktop
+%{_mandir}/man1/golem.1*
