@@ -6,6 +6,7 @@ TryExec=golem
 Name=Golem
 Comment=A lightweight window manager
 Comment[nl]=Een lichtgewicht window manager
+Comment[pl]=Lekki zarządca okien
 Comment[sr]=Лагани менаџер прозора
 Comment[sv]=En lättviktig fönsterhanterare
 # vi: encoding=utf-8
