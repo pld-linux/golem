@@ -10,7 +10,7 @@ Release:	2
 License:	GPL
 Group:		X11/Window Managers
 Source0:	http://telia.dl.sourceforge.net/sourceforge/golem/%{name}-%{version}.tar.gz
-Patch0:		%{name}-home_etc.patch
+Patch0:		%{name}-etc_dir.patch
 URL:		http://golem.sf.net/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
