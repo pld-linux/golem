@@ -6,10 +6,11 @@ Name:		golem
 Summary:	X11 window manager
 Summary(pl):	Zarz±dca okien dla X11
 Version:	0.0.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Window Managers
 Source0:	http://telia.dl.sourceforge.net/sourceforge/golem/%{name}-%{version}.tar.gz
+Patch0:		%{name}-home_etc.patch
 URL:		http://golem.sf.net/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
@@ -27,6 +28,7 @@ Golem jest ma³ym i prostym zarz±dc± okien dla X11.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__aclocal}
