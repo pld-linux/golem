@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=XSession
+Exec=golem
+TryExec=golem
+Name=Golem
+Comment=A lightweight window manager
+Comment[nl]=Een lichtgewicht window manager
+Comment[sr]=Лагани менаџер прозора
+Comment[sv]=En lättviktig fönsterhanterare
