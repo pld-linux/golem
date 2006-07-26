@@ -2,18 +2,18 @@
 # TODO:
 # - add desktop file.
 #
-Name:		golem
 Summary:	X11 window manager
 Summary(pl):	Zarz±dca okien dla X11
+Name:		golem
 Version:	0.0.5
 Release:	2
 License:	GPL
 Group:		X11/Window Managers
-Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/golem/%{name}-%{version}.tar.gz
 # Source0-md5:	09f503f5c6e621e5029e845682a8c941
-Source1:        %{name}-xsession.desktop
+Source1:	%{name}-xsession.desktop
 Patch0:		%{name}-etc_dir.patch
-URL:		http://golem.sf.net/
+URL:		http://golem.sourceforge.net/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
