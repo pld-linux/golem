@@ -3,7 +3,7 @@
 # - add desktop file.
 #
 Summary:	X11 window manager
-Summary(pl):	Zarz±dca okien dla X11
+Summary(pl.UTF-8):   ZarzÄ…dca okien dla X11
 Name:		golem
 Version:	0.0.5
 Release:	2
@@ -25,8 +25,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Golem is a litle X11 window manager.
 
-%description -l pl
-Golem jest ma³ym i prostym zarz±dc± okien dla X11.
+%description -l pl.UTF-8
+Golem jest maÅ‚ym i prostym zarzÄ…dcÄ… okien dla X11.
 
 %prep
 %setup -q
