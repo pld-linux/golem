@@ -3,7 +3,7 @@
 # - add desktop file.
 #
 Summary:	X11 window manager
-Summary(pl.UTF-8):   Zarządca okien dla X11
+Summary(pl.UTF-8):	Zarządca okien dla X11
 Name:		golem
 Version:	0.0.5
 Release:	2
