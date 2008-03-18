@@ -1,0 +1,11 @@
+--- golem-0.0.6/complib/asm-i386/cl_atomic_asm.h.old	2008-03-18 18:26:31.000000000 +0100
++++ golem-0.0.6/complib/asm-i386/cl_atomic_asm.h	2008-03-18 18:26:56.000000000 +0100
+@@ -101,7 +101,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
+ #endif
+ 
+ #ifdef LINUX
+-#include <asm/system.h>
++/* #include <asm/system.h> */
+ /* #include <asm/atomic.h> */
+ #else
+ /* #include <i386/atomic.h> */
