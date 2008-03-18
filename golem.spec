@@ -5,20 +5,25 @@
 Summary:	X11 window manager
 Summary(pl.UTF-8):	Zarządca okien dla X11
 Name:		golem
-Version:	0.0.5
-Release:	2
-License:	GPL
+Version:	0.0.6
+Release:	1
+License:	BSD-like
 Group:		X11/Window Managers
-Source0:	http://dl.sourceforge.net/golem/%{name}-%{version}.tar.gz
-# Source0-md5:	09f503f5c6e621e5029e845682a8c941
+Source0:	http://dl.sourceforge.net/golem/%{name}-%{version}.tar.bz2
+# Source0-md5:	cc43633d68f3b84ae4fafedab41e4945
 Source1:	%{name}-xsession.desktop
 Patch0:		%{name}-etc_dir.patch
+Patch1:		%{name}-asm_system.patch
 URL:		http://golem.sourceforge.net/
-BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	bison
 BuildRequires:	esound-devel
 BuildRequires:	flex
+BuildRequires:	libltdl-devel
+BuildRequires:	xorg-lib-libXinerama-devel
+BuildRequires:	xorg-lib-libXpm-devel
+Requires:	libltdl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 
@@ -30,7 +35,8 @@ Golem jest małym i prostym zarządcą okien dla X11.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
+%patch1 -p1
 
 %build
 %{__aclocal}
@@ -48,6 +54,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/golem/plugins} \
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 
+install src/golem $RPM_BUILD_ROOT%{_bindir}
 install build-bin/* $RPM_BUILD_ROOT%{_bindir}
 install build-plugin/* $RPM_BUILD_ROOT%{_libdir}/golem/plugins
 install doc/golem.1.gz $RPM_BUILD_ROOT%{_mandir}/man1
@@ -60,9 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc PLUGINS README THEMES TODO
+%doc LICENSE README README.plugins README.themes TODO
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/*
+%attr(755,root,root) %{_libdir}/golem
 %{_datadir}/golem
 %{_datadir}/xsessions/%{name}.desktop
 %{_mandir}/man1/golem.1*
